@@ -1,12 +1,13 @@
+import { prerender } from "../renderer/_default.page.server";
 import { getPages } from "../renderer/getPages";
 
 export const passToClient = ["node"];
 
 export function onBeforeRender(pageContext) {
-  const pages = getPages();
+  const prerendered = prerender();
   return {
     pageContext: {
-      node: pages.entries[0].node,
+      node: prerendered[0].pageContext.node,
     },
   };
 }
