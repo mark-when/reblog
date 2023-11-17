@@ -1,7 +1,8 @@
 export { render }
 
 import { createApp } from './app'
-import type { PageContextClient } from './types'
+import type { PageContextClient } from '../src/types'
+import "../src/main.css";
 
 // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
 async function render(pageContext: PageContextClient) {

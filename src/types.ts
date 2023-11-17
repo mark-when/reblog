@@ -1,3 +1,4 @@
+import type { SomeNode } from '@markwhen/parser'
 export type {
   PageContextServer,
   /*
@@ -26,6 +27,8 @@ declare global {
           description?: string
         }
       }
+      node: SomeNode,
+      header: any
     }
   }
 }

@@ -1,41 +1,37 @@
 export { render };
 // See https://vike.dev/data-fetching
-export const passToClient = ["pageProps", "urlPathname", "node"];
+export const passToClient = ["pageProps", "urlPathname", "node", "header"];
 
 import { renderToString as renderToString_ } from "@vue/server-renderer";
 import type { App } from "vue";
 import { escapeInject, dangerouslySkipEscape } from "vike/server";
 import { createApp } from "./app";
 import logoUrl from "./logo.svg";
-import type { PageContextServer } from "./types";
-import { getPages } from "./getPages";
-import { Path, SomeNode } from "@markwhen/parser";
+import type { PageContextServer } from "../src/types";
+import { getPages } from "../src/getPages";
+import { Path, SomeNode, Timelines } from "@markwhen/parser";
+import { PageInfo } from "../vue";
 
-type Page = {
-  url: string;
-  pageContext: {
-    node: SomeNode;
-    path: Path;
-  };
-};
-
-export function prerender() {
+export function prerender(): { pages: PageInfo[], mw: Timelines } {
   const pages = getPages();
   const urls = pages.entries.map((e) => ({
     url: `/${e.url}`,
-    pageContext: {
+    nodeInfo: {
       path: e.path,
       node: e.node as SomeNode,
     },
   }));
   urls.unshift({
     url: "/",
-    pageContext: {
+    nodeInfo: {
       path: [],
       node: pages.parsed.timelines[0].events,
     },
   });
-  return urls;
+  return {
+    pages: urls,
+    mw: pages.parsed,
+  };
 }
 
 async function render(pageContext: PageContextServer) {
@@ -70,7 +66,6 @@ async function render(pageContext: PageContextServer) {
   return {
     documentHtml,
     pageContext: {
-      someValue: "ok",
       // We can add some `pageContext` here, which is useful if we want to do page redirection https://vike.dev/page-redirection
     },
   };

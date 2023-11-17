@@ -1,14 +1,16 @@
+import { PageContextServer } from "vike/types";
 import { prerender } from "../renderer/_default.page.server";
-import { getPages } from "../renderer/getPages";
 
-export const passToClient = ["node"];
+export const passToClient = ["mw", "allPages", "ours"];
 
-export function onBeforeRender(pageContext) {
+export function onBeforeRender(pageContext: PageContextServer) {
   const prerendered = prerender();
-  const ours = prerendered.find((page) => page.url === pageContext.url);
+  const ours = prerendered.pages.find((page) => page.url === pageContext.url);
   return {
     pageContext: {
-      node: ours?.pageContext.node,
+      ours,
+      allPages: prerendered.pages,
+      mw: prerendered.mw,
     },
   };
 }

@@ -1,13 +1,15 @@
+import { PageContextServer } from "vike/types";
 import { prerender } from "../renderer/_default.page.server";
-import { getPages } from "../renderer/getPages";
 
-export const passToClient = ["node"];
+export const passToClient = ["allPages", "mw"];
 
-export function onBeforeRender(pageContext) {
+export function onBeforeRender(pageContext: PageContextServer) {
+  console.log('old idnex')
   const prerendered = prerender();
   return {
     pageContext: {
-      node: prerendered[0].pageContext.node,
+      allPages: prerendered.pages,
+      mw: prerendered.mw,
     },
   };
 }

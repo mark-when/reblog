@@ -1,12 +1,20 @@
-<script setup lang="ts">
-import { usePageContext } from "../renderer/usePageContext";
-
-const pageContext = usePageContext();
-</script>
-
 <template>
-  <div>hello</div>
-  <div>{{ pageContext.node }}</div>
+  <UserPage v-bind="props"></UserPage>
 </template>
 
-<style scoped></style>
+<script lang="ts" setup>
+import { computed } from "vue";
+import { usePageContext } from "../renderer/usePageContext";
+import UserPage from "../src/User/UserPage.vue";
+
+const props = computed(() => {
+  const context = usePageContext();
+  console.log("*", context.mw.timelines);
+  return {
+    path: "/",
+    allPages: context.allPages,
+    mw: context.mw,
+    ours: context.ours,
+  };
+});
+</script>
