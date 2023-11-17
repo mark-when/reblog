@@ -47,6 +47,6 @@ const props = defineProps<UserPageProps>();
 
 <style>
 body {
-  @apply bg-stone-50;
+@apply bg-stone-50 dark:bg-sky-950;
 }
 </style>

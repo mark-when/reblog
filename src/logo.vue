@@ -25,3 +25,11 @@
     </g>
   </svg>
 </template>
+
+<style scoped>
+@media (prefers-color-scheme: dark) {
+  g {
+    fill: rgb(14 165 233);
+  }
+}
+</style>

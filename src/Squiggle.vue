@@ -10,8 +10,8 @@ const h = (s: string) =>
 const r1 = computed(() => h(props.seed.substring(0, 2)) % 2 === 0);
 const r2 = computed(() => h(props.seed.substring(2)) % 2 === 0);
 
-const minY = computed(() => 1 - Math.min(1, 0.5 / props.flatness));
-const maxY = computed(() => 1 + Math.min(1, 0.5 / props.flatness));
+const minY = computed(() => 1 - Math.min(1, 1 / props.flatness));
+const maxY = computed(() => 1 + Math.min(1, 1 / props.flatness));
 </script>
 
 <template>
