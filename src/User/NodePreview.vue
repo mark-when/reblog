@@ -9,6 +9,7 @@ import CheckboxBlock from "./CheckboxBlock.vue";
 import ImagesBlock from "./ImagesBlock.vue";
 import ListItemBlock from "./ListItemBlock.vue";
 import Linkified from "./Linkified.vue";
+import Squiggle from "../Squiggle.vue";
 
 const props = defineProps<{
   node: Node<Event>;
@@ -116,16 +117,23 @@ const avatarUrl = computed(() => props.authorInfo.avatarUrl);
 
 <template>
   <div class="flex flex-col gap-[2px] mb-8">
-    <div class="@6xl:ml-[24rem] @7xl:ml-[30rem] border-t pt-2 @6xl:w-[40rem]">
-      <div class="ml-5 @6xl:ml-1 h-1 w-6 bg-current rounded-full"></div>
-    </div>
+    <div
+      class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] border-t pt-2"
+    ></div>
     <Linkified
-      class="font-medium leading-[1.65rem] hover:underline py-1"
-      :class="hasMore ? 'text-3xl' : ''"
+      class="leading-[1.65rem] hover:underline"
+      :class="hasMore ? 'text-3xl font-bold py-1' : 'font-medium'"
       :url="url"
       :bold="false"
       :text="titleText"
     ></Linkified>
+    <div class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] text-sky-700">
+      <Squiggle
+        :seed="node.value.eventDescription.eventDescription"
+        class="w-12"
+        :flatness="mappedSupplemental.length"
+      ></Squiggle>
+    </div>
     <div
       class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] flex flex-row mx-4 text-gray-500 dark:text-gray-400 px-1 group text-sm items-center gap-1"
     >

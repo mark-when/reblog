@@ -12,7 +12,6 @@ interface UserPageProps {
   ours?: PageInfo;
 }
 const props = defineProps<UserPageProps>();
-console.log("userpage", props.mw);
 </script>
 
 <template>
@@ -46,4 +45,8 @@ console.log("userpage", props.mw);
   </div>
 </template>
 
-<style></style>
+<style>
+body {
+  @apply bg-stone-50;
+}
+</style>
