@@ -10,7 +10,7 @@ const props = defineProps<{ header: any; path: string }>();
   >
     <div class="sticky top-8 flex flex-col gap-4">
       <a href="/"> <Logo class="h-10 w-10"></Logo></a>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-4">
         <a class="text-3xl font-black" :href="path">
           {{ header?.re?.title || header?.title }}
         </a>
@@ -31,7 +31,9 @@ const props = defineProps<{ header: any; path: string }>();
             <a class="font-bold" :href="path">
               {{ header?.re?.author?.name || header?.author?.name }}
             </a>
-            <a class="" :href="path">{{ path.replace(/^\//, "@") }}</a>
+            <a v-if="path && path !== '/'" class="" :href="path">{{
+              path.replace(/^\//, "@")
+            }}</a>
           </div>
         </div>
         <div

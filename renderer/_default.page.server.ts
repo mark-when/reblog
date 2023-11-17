@@ -9,10 +9,11 @@ import { createApp } from "./app";
 import logoUrl from "./logo.svg";
 import type { PageContextServer } from "../src/types";
 import { getPages } from "../src/getPages";
-import { Path, SomeNode, Timelines } from "@markwhen/parser";
+import { Event, Node, SomeNode, Timelines } from "@markwhen/parser";
 import { PageInfo } from "../vue";
+import { innerHtml } from "../src/utilities/html";
 
-export function prerender(): { pages: PageInfo[], mw: Timelines } {
+export function prerender(): { pages: PageInfo[]; mw: Timelines } {
   const pages = getPages();
   const urls = pages.entries.map((e) => ({
     url: `/${e.url}`,
@@ -43,17 +44,47 @@ async function render(pageContext: PageContextServer) {
 
   const appHtml = await renderToString(app);
 
-  // See https://vike.dev/head
-  const { documentProps } = pageContext.exports;
-  const title = (documentProps && documentProps.title) || "Vite SSR app";
-  const desc =
-    (documentProps && documentProps.description) || "App using Vite + Vike";
+  const { mw, ours } = pageContext;
+  let title, desc;
+  const header = mw.timelines[0].header;
+  if (ours) {
+    const eventDescription = (ours.nodeInfo.node as Node<Event>).value
+      .eventDescription;
+    if (eventDescription.eventDescription) {
+      title = eventDescription.eventDescription;
+    } else if (
+      eventDescription.supplemental &&
+      eventDescription.supplemental.length
+    ) {
+      const candidateTitle = eventDescription.supplemental
+        .filter((s) => s.type !== "image")
+        .find((s) => !!s.raw);
+      if (candidateTitle) {
+        if (!title) {
+          title = innerHtml(candidateTitle.raw);
+        } else {
+          desc = innerHtml(candidateTitle.raw);
+        }
+      }
+    }
+
+    if (title && (header.re?.title || header.title)) {
+      title += ` | ${header.re?.title || header.title}`;
+    }
+  }
+  title ||= header.re?.title || header.title;
+  desc ||= header.re?.description || header.description;
 
   const documentHtml = escapeInject`<!DOCTYPE html>
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
         <link rel="icon" href="${logoUrl}" />
+        <link rel="icon" type="image/png" href="/favicon.png">
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="description" content="${desc}" />
         <title>${title}</title>

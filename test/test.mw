@@ -1,110 +1,243 @@
-title: Welcome to Markwhen
+---
+Something:
+re:
+  title: This, that, and the other thing
+  description: |
+    mostly [markwhen](https://markwhen.com) stuff
+    [Github](https://github.com/kochrt)
+  author:
+    name: Rob Koch
+    avatar: https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/0bc5-25f1-db6a-3706.jpg 
+  
+#london:
+  timezone: Europe/London
+  color: #227766
 
-#Project1: #d336b1
-#welcome: orange
+timezone: America/New_York
 
-group new group up here
-January 6 2021: shit be happening yo
+ranges: [1 day, 30 days, 6 months]
 
-endGroup
-section Welcome #welcome
-now: This example timeline showcases some of markwhen's features.
+#reminderTest:
+  reminders: 1 hour
+---
 
-now: For more information, view the documentation [here](https://docs.markwhen.com) or join the [discord](https://discord.gg/kQbqP4uz)
-#welcome
 
-now: Note that changes you make here are not saved
-If you want to make a new markwhen you should open a tab at the bottom or click open in the sidebar
-endSection
+Sep 1 2023 7:52: economics is a means to an end, it's not the end
 
-section All Projects
-group Project 1 #Project1
-// Supports ISO8601
-2023-01/2023-03: Sub task #John
-2023-03/2023-06: Sub task 2 #Michelle
-More info about sub task 2
+Jul 14 2023: collab editing stuff 🫣 
+Jun 29 2023 13:27:
+This one's big, imho: suport has been added for importing other timelines 🤯
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/3949-6e35-f1d1-dc13.png)
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/7b18-93dd-5f15-6e84.png)
+ 
+Just add a list of other shared timelines you want to import under an import field in the header, and they will be imported for you to see. You can toggle them on/off while you're working if you need to temporarily disable them.
 
-- list item only
-- another item in the list
-- [] checkbox thing
-- [ ] We need to get this done
-- [x] And this
-- [ ] This one is extra
+Thanks to @gpspake in the [discord](https://discord.gg/3rTpUD94ac) for the suggestion!
 
-2023-07: Yearly planning
-endGroup
- group Project 2 #Project2
-2023-04/4 months: Larger sub task #Danielle
 
-// Supports American date formats
-03/2023 - 1 year: Longer ongoing task #Michelle
+Jun 26 2023 11:13:
+You can now toggle date ranges and task completion indicators on the timeline view
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/e143-3e00-496b-dcfe.png)
 
-- [x] Sub task 1
-- [x] Sub task 2
-- [ ] Sub task 3
-- [ ] Sub task 4
-- [ ] so many checkboxes omg
+Jun 20 2023 13:54: bro
 
-10/2023 - 2 months: Holiday season
-endGroup
+2023-06-19: Making an IDE progressive web app
+(of sorts)
 
-group Project 5
-01/2024: Project kickoff
-02/2024-04/2024: Other stuff
-endGroup
-endSection
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/74e7-5290-d977-f71a.png)
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/044d-668b-a5bd-1c74.png)
+As of today, [markwhen.com](https://markwhen.com) is a [progressive web app](https://web.dev/learn/pwa/progressive-web-apps/)! 🎉 I had been meaning to do this for a while, and actually attempted it a few months ago, but was discouraged when I got my site into a state such that it wasn't updating even when I was making changes. That was unsettling and turned me off from deploying it. 
 
-2023-01-03 every other week for 1 year: Biweekly meeting
+But, thanks to [vite-pwa](https://vite-pwa-org.netlify.app/), some good [reference](https://github.com/elk-zone/elk/tree/main/modules/pwa) [implementations](https://github.com/tomayac/SVGcode), [documentation](https://web.dev/learn/pwa/progressive-web-apps/), and the [ability to put tabs in the title bar area](https://web.dev/window-controls-overlay/), I went for it again (successfully (so far)) and got it done in a weekend.
 
-// Events that don't have explicit end dates have inferred ranges - for example, when a year is specified, it lasts from the beginning of that year to the end of it.
-2024: A year-long event
+And I have to say it does feel quite rewarding to be writing this post in [my own PWA editor](https://markwhen.com)! I know calling it an IDE is a stretch, but it looks like an IDE, right?
 
-// Inferred ranges are as granular as their definitions.
-09/2024: one month
+Here's my take on what went well and what didn't.
 
-2025-05-05: one day
+# What went well
 
-Jan 4 2025 8am: instant
+- Vite PWA
 
-// You can also be specific with your ranges
-2024/2025: An event that lasts two years
+Markwhen is built using vite, and the [vite-pwa](https://vite-pwa-org.netlify.app/) plugin helps to abstract away a lot of the intricacies needed to make your web app compliant.
 
-November 8, 2022 9am - November 9, 2023, 10am: one year, one day, and one hour
+- Having open source examples to reference. 
 
-now: [More documentation](https://docs.markwhen.com/syntax/events.html)
+Markwhen is a vue app so I largely look for code examples in vue, when possible. [Elk.zone](https://elk.zone) is an [open source](https://github.com/elk-zone/elk), [nuxt](https:/
+uxt.com) based [mastodon](https://joinmastodon.org/) progressive web app client that was a good resource for how PWAs are implemented.
 
-// Event descriptions last from the date range definition up to the next event
-2029-04-25/2029-05-03: Descriptions can be one line
+[svgco.de](https://svgco.de) is a PWA for working with svgs, is also [open source](https://github.com/tomayac/SVGcode), and had a lot of the functionality I was looking to implement in my app, in an admittedly more straightforward way than elk. 
 
-2029-04-25/2029-05-03: Or
-they can span
-multiple lines
+Microsoft is into PWAs (for some reason, but I'm not complaining) and has good examples on [their github](https://microsoftedge.github.io/Demos/pwamp/).
 
-1/27/2025: [] An event can have a checkbox for completion
-Put square brackets at the start of the event description
+- window-controls-overlay
 
-1/27/2026: [x] To mark an event as completed, put an x in the square brackets
+This is basically what made me want to make a PWA. I made tabs and then was like "hm it would be nice if my tabs could be where every other apps' tabs are". And then I found [https://web.dev/window-controls-overlay/](https://web.dev/window-controls-overlay/)!
 
-1/27/2027: Events can have lists
+# What went less than well
 
-- [ ] checkbox list item
-- [x] a completed checkbox list item
-- simple list item
-- another simple list item
+- Browser support
 
-1/27/2028 - 1 year: 68% Manually indicate an event's completion with a percentage in the description
+On the one hand, it's too bad support is limited in browsers other than those that are chromium based; on the other hand, when testing I can pretty much focus on Chrome. I more or less assume and accept that things will be slightly broken on webkit-based browsers (iOS/macOS/iPadOS), though it seems [things are getting better in that department](https://developer.apple.com/videos/play/wwdc2023/10120/).
 
-Partially completed events will have their event bar partially filled that amount
+- Background color
 
-1 year: Links are markdown-style: [This is a link](https://markwhen.com)
+You can specify [background_color](https://developer.mozilla.org/en-US/docs/Web/Manifest/background_color) in the app's manifest, but it's less than clear how that affects different themes (light/dark). 
 
-1 year: Images are also markdown-style:
-![](https://blog.markwhen.com/images/calendar1.png)
+In dark mode when resizing the app's window I would be able to spot areas of white around the window's controls, which was unpleasant to behold. I ended up putting a background color on the `html` element itself.
 
-1 year: Locations (which are more useful for the map view) can be indicated in a similar way: [Hawaii](location) [Alaska](map)
+The other thing is that sometimes I fade the background when a dialog is open. Except! this does not fade the app's window controls background, and it looks bad. I suspect I will calculate the color that I get after the blur is applied to the background color and hardcode it when I have dialog(s) open. It get progressively worse when there are multiple dialogs open on top of each other.
 
-2024: Refer to other markwhen documents with `@` syntax: @rob
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/1b93-8069-eec2-a524.png)
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/5405-7fef-38a6-a520.png)
 
-now: [More documentation](https://docs.markwhen.com/syntax/event-descriptions.html)
+- Pinch zooming
 
-// Events can be grouped together
+In most native apps you can't pinch to zoom in on the app's interface. Whether this is a good thing or not is up for debate, but since it's an [unexpected behavior](https://en.wikipedia.org/wiki/Principle_of_least_astonishment) I listen for wheel events and `.preventDefault()` them.
+
+- apple-touch-icon
+
+I have an 'apple-touch-icon' in my `head` element, but Apple devices don't seem to be using it. I don't know what's up with that.
+
+- Be careful with the service worker
+
+Once installed it is there until uninstalled! That is, you might delete it from your deployed assets, but it will still be on your users' devices unless you explicitly unregister it. 
+
+- Handling files
+
+I understand it is important to restrict access and otherwise be good stewards for users' files. But any other downloaded or installed application does not have such a restriction, and serializing file handles and asking permission to open them each and every time is frustrating.
+
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/0b94-49df-4027-0a70.png)
+
+# Suggested improvements: 
+
+I think there should be a `go offline` toggle or indicator on the OS side for PWAs. If my users want to use my app offline, that's great -- give them the assurance that they are. And then let them access the files they want to!
+
+# What's next for the Markwhen PWA
+
+- Better app icon
+- Keyboard shortcuts & switching between tabs
+I use [BetterTouchTool](https://folivora.ai) to swipe between chrome tabs & VS Code tabs, it would be nice to do the same with markwhen.
+- Fix background in window controls area when dialogs are open
+
+Jun 16 2023 13:07: 
+I updated to macOS ventura for the weather app
+
+Jun 15 2023 18:02: pages are back on markwhen.com
+
+Jun 7 2023 10:42: Doing some work to make markwhen.com able to edit multiple pages again
+
+May 31 2023 13:24: 
+i don't know how they do it
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/9660-a8ff-4efb-93ab.jpg)
+
+May 30 2023 9:30: 
+I'm now blogging using markwhen.
+
+This is for a couple reasons. First of all, I don't really like twitter, and I thought it was a little silly that I was using something really close to markwhen to make my blog. So I made it possible to [blog using markwhen](https://re.markwhen.com)
+
+Additionally, I wanted a reason or way to make myself use the language and the editor more, because I wasn't really making that many timelines. I have already found that using it has made me improve the editor in ways that I otherwise wouldn't have thought of. Always good to be a user of your own stuff.
+
+Lastly, marketing is kind of a weak point for me, but I'm finding that I'm actually writing more given this setup. Good step in the right direction.
+
+May 26 2023: Markwhen is a journal language
+Ever since I [started](https://cascade.page) working on [markwhen](https://markwhen.com), I've had a bit of a hard time describing what markwhen is. 
+
+- "It's a timeline creator"
+- "Make gantt charts using plain text"
+- "It's like markdown but for timelines"
+
+I started using the markdown comparison a lot. Like markdown, markwhen is plain-text-y but can be transformed into something more visually meaningful. 
+
+![](https://media.markwhen.com/7mGszd2clHRHudsf0lLX4Kb1ChI3/8cff-ee04-35f4-6ebd.png)
+
+This past weekend I kind of had an epiphany about what markwhen is - it's a journal language. And by that I mean it is a collection of dated entries. That's it! But being able to simply say what it is that I'm working on, what markwhen actually *is*, unjams a lot of my thought processes about what I'm doing. 
+
+[Markwhen](https://markwhen.com) started as a timeline visualization app, and don't get me wrong, that's still what it's best at. But there really aren't limits as to what it could be, given this new description of it as a journal language. Because many things are collections of dated entries - journals, diaries, timelines, calendars, blogs, logs, social feeds, etc. etc. 
+
+For example, this blog is written in markwhen! Why not, right? A collection of dated entries.
+
+May 18 2023 11:52: 
+Thank goodness I'm not good at graphic design otherwise all the deisgn-y things I do would take 10 times as long
+
+May 5 2023 12:17: #london
+- markwhen.com is a better url than post.mw
+- post.mw lends itself better to more use (more shareable)
+- a calendar would also lend itself better to more use
+
+May 5 2023 12:00: 
+I think Markwhen is having/has a bit of an identity crisis. It has too many possible uses. I want to be able to use it for sharing "tweets" via post.mw, I want the timeline to work and be well supported, I want to use it as a calendar, for note-taking, etc. etc. Having a hard time reconciling all these different uses and deciding what to work on.
+
+#london 
+
+May 4 2023 20:33: just a quick time zone test #london
+
+
+May 1 2023 13:05: this has been the best food court experience I've ever had ![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/5a43-59b3-0e2c-5691.jpg)
+
+#london
+
+Apr 23 2023 21:58:
+comedy cellar
+
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/08ae-05bb-7986-b173.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/bf7e-0d4d-43d4-e694.jpg)
+
+Apr 23 2023 11:42:
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/9e3a-1d24-1058-389f.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/e9b6-6381-469d-1ef1.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/e42c-b5af-93d4-8731.jpg)
+
+Apr 22 2023 21:56: it's raining
+
+Apr 22 2023 20:20: ![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/60d9-c541-9550-9957.jpg)
+
+Apr 22 2023 13:41: ![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/d700-3280-06a2-01aa.jpg)
+
+[central park](location)
+
+Apr 21 2023 9:19:
+100% is not a progress state that any user should see. Either we're done, and there's no progress to show, or we're not, and is therefore less than 100%
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/6492-a446-7099-52ec.png)
+
+Apr 20 2023 16:04:
+Once you start getting into z-indexes you know it's a real project now and also that you're in for it
+
+Apr 20 2023 14:59: ![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/28f7-2069-473a-9ac9.png)
+
+Apr 20 2023 12:26: 
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/1a35-137e-b62a-cfc9.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/544e-6240-1929-a909.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/a092-e43f-badc-fc00.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/8d7c-b41f-8498-558f.jpg)
+![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/707e-3c99-6652-e694.jpg)
+
+
+Apr 20 2023 12:26: ![](https://media.post.mw/cSxEVmALYTOWLpk32d4V7HmxaHA2/46b0-7c82-1506-fdfd.jpg)
+
+April 18 2023 9:33pm: More precise timing
+
+2023-04-18: posting from the new editor on [post.mw](https://post.mw)
+
+3/26/2023:
+empty first line test
+
+3/16/2023: always too much to do
+
+3/15/2023 12:24pm: There's a bug in the markwhen editor that will eat every 15th or so character you type (if you're typing quickly). Thank god it's my own software so I can fix it
+
+3/15/2023 12:24pm: I had soaked a pan from last night and it actually helped to wash it? kind of thought soaking was just what we did when we didn't want to do the worst dishes
+
+3/15/2023: Professional Revolution
+
+So anyway all white-collar jobs are going to be eaten by AI. Lawyers, doctors, programmers, accountants, etc.
+
+I don't think this class of people will take it lying down, however. And something that this group has? Money! It may not be as much as the 1%, but it's not nothing either.
+
+There will be a window--and, given how quickly things are progressing, it will be a small window--where this group of people may be able to change  either the way AI is developed or the economic environment it comes in to.
+
+Curious to see what this professional revolution would/will look like.
+
+Mar 14 2023: Also it was nice to have jobs as programmers while we were still able
+
+Mar 14 2023: Working on markwhen and post âœ‰ï¸ 
+A simple way to blog stuff
