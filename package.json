@@ -42,6 +42,7 @@
     "tailwindcss": "^3.3.5"
   },
   "files": [
+    "dist/**/*",
     "lib/**/*",
     "pages/**/*",
     "public/**/*",
