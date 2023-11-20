@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import AuthorSidebar from "./AuthorSidebar.vue";
 import { PageInfo } from "../../vue";
-import { Timelines, isEventNode } from "@markwhen/parser";
+import { Event, Node, Timelines, isEventNode } from "@markwhen/parser";
 import NodePreview from "./NodePreview.vue";
-import Node from "./Node.vue";
+import NodeVue from "./Node.vue";
 
 interface UserPageProps {
   path: string;
@@ -19,21 +19,19 @@ const props = defineProps<UserPageProps>();
     <div class="dark:text-slate-200 mx-auto @6xl:relative">
       <AuthorSidebar :path="path" :header="mw.timelines[0].header" />
       <div class="main overflow-scroll mt-8">
-        <Node
+        <NodeVue
           v-if="ours"
-          :node="ours.nodeInfo.node"
+          :node="(ours.node as Node<Event>)"
           :authorInfo="{
             name: mw.timelines[0].header.name,
             avatarUrl: mw.timelines[0].header.avatar?.url,
           }"
-        ></Node>
+        ></NodeVue>
         <NodePreview
           v-else
-          v-for="{ nodeInfo: { node }, url } in allPages.filter(
-            ({ nodeInfo }) => isEventNode(nodeInfo.node)
-          )"
-          :node="node"
-          :url="url"
+          v-for="{ node, url } in allPages.filter((p) => isEventNode(p.node))"
+          :node="(node as Node<Event>)"
+          :url="`/${url}`"
           :authorInfo="{
             name: mw.timelines[0].header.name,
             avatarUrl: mw.timelines[0].header.avatar?.url,

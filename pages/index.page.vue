@@ -9,7 +9,6 @@ import UserPage from "../src/User/UserPage.vue";
 
 const props = computed(() => {
   const context = usePageContext();
-
   return {
     path: "/",
     allPages: context.allPages,

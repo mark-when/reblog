@@ -5,12 +5,11 @@ export const passToClient = ["mw", "allPages", "ours"];
 
 export function onBeforeRender(pageContext: PageContextServer) {
   const prerendered = prerender();
-  const ours = prerendered.pages.find((page) => page.url === pageContext.url);
+  const ours = prerendered.find(
+    ({ url }) =>
+      pageContext.urlPathname === url || pageContext.urlPathname === `/${url}`
+  );
   return {
-    pageContext: {
-      ours,
-      allPages: prerendered.pages,
-      mw: prerendered.mw,
-    },
+    pageContext: ours?.pageContext,
   };
 }

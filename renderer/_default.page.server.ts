@@ -9,47 +9,51 @@ import { createApp } from "./app";
 import logoUrl from "./logo.svg";
 import type { PageContextServer } from "../src/types";
 import { getPages } from "../src/getPages";
-import { Event, Node, SomeNode, Timelines } from "@markwhen/parser";
-import { PageInfo } from "../vue";
+import { Event, Node, SomeNode } from "@markwhen/parser";
 import { innerHtml } from "../src/utilities/html";
 
-export function prerender(): { pages: PageInfo[]; mw: Timelines } {
+interface Prerendered {
+  url: string;
+  pageContext: Vike.PageContext;
+}
+
+export function prerender(): Prerendered[] {
   const pages = getPages();
-  const urls = pages.entries.map((e) => ({
-    url: `/${e.url}`,
-    nodeInfo: {
-      path: e.path,
-      node: e.node as SomeNode,
+  const urls: Prerendered[] = pages.entries.map(({ url, node, path }) => ({
+    url: `/${url}`,
+    pageContext: {
+      mw: pages.parsed,
+      allPages: pages.entries,
+      ours: {
+        url,
+        node: node as SomeNode,
+        path,
+      },
     },
   }));
   urls.unshift({
     url: "/",
-    nodeInfo: {
-      path: [],
-      node: pages.parsed.timelines[0].events,
+    pageContext: {
+      mw: pages.parsed,
+      allPages: pages.entries,
     },
   });
-  return {
-    pages: urls,
-    mw: pages.parsed,
-  };
+  return urls;
 }
 
 async function render(pageContext: PageContextServer) {
-  const { Page, pageProps } = pageContext;
+  const { Page } = pageContext;
   // This render() hook only supports SSR, see https://vike.dev/render-modes for how to modify render() to support SPA
   if (!Page)
     throw new Error("My render() hook expects pageContext.Page to be defined");
-  const app = createApp(Page, pageProps, pageContext);
+  const app = createApp(Page, {}, pageContext);
 
   const appHtml = await renderToString(app);
-
   const { mw, ours } = pageContext;
   let title, desc;
   const header = mw.timelines[0].header;
   if (ours) {
-    const eventDescription = (ours.nodeInfo.node as Node<Event>).value
-      .eventDescription;
+    const eventDescription = (ours.node as Node<Event>).value.eventDescription;
     if (eventDescription.eventDescription) {
       title = eventDescription.eventDescription;
     } else if (

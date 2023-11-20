@@ -1,4 +1,5 @@
 import { Timelines } from "@markwhen/parser";
+import type { SomeNode } from "@markwhen/parser";
 
 declare module "*.vue" {
   const Component: any;
@@ -18,10 +19,8 @@ declare global {
 
 export type PageInfo = {
   url: string;
-  nodeInfo: {
-    node: SomeNode;
-    path: Path;
-  };
+  node: SomeNode;
+  path: number[];
 };
 
 // type PageProps = {

@@ -7,8 +7,8 @@ export function onBeforeRender(pageContext: PageContextServer) {
   const prerendered = prerender();
   return {
     pageContext: {
-      allPages: prerendered.pages,
-      mw: prerendered.mw,
+      allPages: prerendered[0].pageContext.allPages,
+      mw: prerendered[0].pageContext.mw,
     },
   };
 }

@@ -127,7 +127,9 @@ const avatarUrl = computed(() => props.authorInfo.avatarUrl);
       :bold="false"
       :text="titleText"
     ></Linkified>
-    <div class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] mx-4 px-1 text-sky-700 dark:text-sky-500">
+    <div
+      class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] mx-4 px-1 text-sky-700 dark:text-sky-500"
+    >
       <Squiggle
         :seed="node.value.eventDescription.eventDescription"
         class="w-12"
