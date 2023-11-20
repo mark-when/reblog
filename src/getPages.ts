@@ -4,7 +4,7 @@ import { toArray } from "./urls";
 import { DateTime } from "luxon";
 
 export function getPages() {
-  const filePath = "test/test.mw";
+  const filePath = (process && process.env && process.env.mw) || "test/test.mw";
   if (!filePath) {
     console.error("No file specified");
   }

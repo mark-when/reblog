@@ -18,9 +18,13 @@ interface Prerendered {
 }
 
 export function prerender(): Prerendered[] {
+  let base = ''
+  if (process && process.env && process.env.base) {
+    base = process.env.base
+  }
   const pages = getPages();
   const urls: Prerendered[] = pages.entries.map(({ url, node, path }) => ({
-    url: `/${url}`,
+    url: base && base.length > 1 ? `${base}/${url}` : `/${url}`,
     pageContext: {
       mw: pages.parsed,
       allPages: pages.entries,
@@ -32,7 +36,7 @@ export function prerender(): Prerendered[] {
     },
   }));
   urls.unshift({
-    url: "/",
+    url: base && base.length > 1 ? `${base}/` : "/",
     pageContext: {
       mw: pages.parsed,
       allPages: pages.entries,

@@ -1,4 +1,9 @@
 {
+  "name": "@markwhen/re",
+  "version": "0.0.2",
+  "bin": {
+    "render": "lib/index.js"
+  },
   "scripts": {
     "dev": "npm run server:dev",
     "prod": "npm run build && npm run server:prod",
@@ -34,5 +39,17 @@
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5"
-  }
+  },
+  "files": [
+    "pages/**/*",
+    "public/**/*",
+    "renderer/**/*",
+    "server/**/*",
+    "src/**/*",
+    "package.json",
+    "postcss.config.cjs",
+    "tailwind.config.cjs",
+    "tsconfig.json",
+    "vite.config.ts"
+  ]
 }
