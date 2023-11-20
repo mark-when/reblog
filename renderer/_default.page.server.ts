@@ -50,6 +50,11 @@ async function render(pageContext: PageContextServer) {
 
   const appHtml = await renderToString(app);
   const { mw, ours } = pageContext;
+  if (!mw) {
+    return {
+      documentHtml: `<p>Page not found!</p>`,
+    };
+  }
   let title, desc;
   const header = mw.timelines[0].header;
   if (ours) {
