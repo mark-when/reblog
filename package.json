@@ -1,6 +1,6 @@
 {
   "name": "@markwhen/re",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": {
     "render": "lib/index.js"
   },
@@ -11,7 +11,8 @@
     "preview": "vite build && vite preview",
     "server": "node --loader ts-node/esm ./server/index.ts",
     "server:dev": "npm run server",
-    "server:prod": "cross-env NODE_ENV=production npm run server"
+    "server:prod": "cross-env NODE_ENV=production npm run server",
+    "bump": "node scripts/bumper.js"
   },
   "dependencies": {
     "@markwhen/parser": "^0.10.14",
