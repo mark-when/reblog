@@ -6,14 +6,16 @@ const props = defineProps<{ header: any; path: string }>();
 
 <template>
   <div
-    class="sidebar px-4 @6xl:absolute @6xl:w-80 @6xl:ml-16 @6xl:pt-0 pt-2 pb-4 rounded @6xl:h-full"
+    class="sidebar px-5 @6xl:absolute @6xl:w-80 @6xl:ml-16 @6xl:pt-0 pt-2 pb-4 rounded @6xl:h-full"
   >
     <div class="sticky top-8 flex flex-col gap-4">
-      <a href="/"> <Logo class="h-10 w-10"></Logo></a>
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1">
+        <a href="/"> <Logo class="h-10 w-10"></Logo></a>
         <a class="text-3xl font-black" :href="path">
           {{ header?.re?.title || header?.title }}
         </a>
+      </div>
+      <div class="flex flex-col gap-2">
         <div
           class="author flex flex-row items-center gap-2 pt-0"
           v-if="header?.re?.author || header?.author"

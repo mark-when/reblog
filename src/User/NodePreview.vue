@@ -118,7 +118,7 @@ const avatarUrl = computed(() => props.authorInfo.avatarUrl);
 <template>
   <div class="flex flex-col gap-[2px] mb-8">
     <div
-      class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] border-t pt-2"
+      class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] border-t pt-2 dark:border-sky-900"
     ></div>
     <Linkified
       class="leading-[1.65rem] hover:underline"
@@ -127,7 +127,7 @@ const avatarUrl = computed(() => props.authorInfo.avatarUrl);
       :bold="false"
       :text="titleText"
     ></Linkified>
-    <div class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] text-sky-700 dark:text-sky-500">
+    <div class="@6xl:ml-[24rem] @7xl:ml-[30rem] @6xl:w-[40rem] mx-4 px-1 text-sky-700 dark:text-sky-500">
       <Squiggle
         :seed="node.value.eventDescription.eventDescription"
         class="w-12"
