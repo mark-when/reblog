@@ -1,6 +1,6 @@
 {
   "name": "@markwhen/re",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "bin": {
     "render": "lib/index.js"
   },
@@ -42,6 +42,7 @@
     "tailwindcss": "^3.3.5"
   },
   "files": [
+    "node_modules/vike/**/*",
     "dist/**/*",
     "lib/**/*",
     "pages/**/*",
